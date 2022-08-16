@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { ListNode } = require('../extensions/list-node.js');
+const { ListNode } = require('../extensions/list-node.js');
 
 /**
  * Given a singly linked list of integers l and an integer k,
@@ -22,9 +22,26 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+// l - List
+// l.value - List.value - содержимое объекта, которое в тесте является массивом
+// k - number - число, которое нужно убрать из массива и также нужно убрать все его реплики
+// l.next - следующий List после l
+
+
+function removeKFromList(l, k) {
+  
+  while (l.value === k) {
+    l = l.next; // will be null
+  }
+
+  let current = l;
+
+  while (current.next) {
+    current.next.value === k ? current.next = current.next.next : current = current.next;
+  }
+
+  return l;
 }
 
 module.exports = {
